@@ -1,10 +1,12 @@
 class Tile
-  attr_reader :bombed, :flagged, :revealed
+  attr_reader :bombed, :flagged, :revealed, :board
 
-  def initialize(bombed = false)
+  def initialize(board, position, bombed = false)
     @bombed = bombed
     @flagged = false
     @revealed = false
+    @position = position
+    @board = board
   end
 
   def reveal
@@ -18,6 +20,9 @@ class Tile
   end
 
   def to_s
+    if revealed
+      "*"
+    end
   end
 
 end

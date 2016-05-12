@@ -11,18 +11,20 @@ class Board
     until bombs_placed == MAX_BOMBS
       random_coord_x = rand(0...size)
       random_coord_y = rand(0...size)
+      position = [random_coord_x, random_coord_y]
 
       unless grid[random_coord_x][random_coord_y].is_a?(Tile)
-        grid[random_coord_x][random_coord_y] = Tile.new(true)
+        grid[random_coord_x][random_coord_y] = Tile.new(self, position, true)
         bombs_placed += 1
       end
     end
 
     grid.each_with_index do |row, idx|
-      row.each_index { |column| grid[idx][column] = Tile.new if grid[idx][column].nil? }
+      row.each_index { |column| grid[idx][column] = Tile.new(self, [idx, column]) if grid[idx][column].nil? }
     end
 
   end
+
 
   def num_of_bombs
     @grid.flatten.count { |tile| tile.bombed }
@@ -40,6 +42,9 @@ class Board
   end
 
   def loss?
+  end
+
+  def render
   end
 
 
