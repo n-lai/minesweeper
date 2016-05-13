@@ -41,10 +41,22 @@ class Board
     tile.value = value
   end
 
-  def loss?
+  def loss?(pos)
+
   end
 
   def render
+
+    self.grid.each do |row|
+      row.each do |tile|
+        tile.to_s
+      end
+      puts ""
+    end
+
+
+
+
   end
 
 
